@@ -1,0 +1,23 @@
+version: '2'
+services:
+  clamd:
+    build:
+      context: .
+    expose:
+      - 3310
+    ports:
+      - 3310:3310
+
+  clamdscan:
+    build:
+      context: ./test
+    # this is just to keep the container running
+    # once it's up, docker exec in to run commands
+    command: tail -F anything
+    depends_on:
+      - clamd
+    links:
+      - clamd:clamd
+    environment:
+      - CLAMD_PORT=3310
+      - CLAMD_HOST=clamd
