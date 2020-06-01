@@ -1,4 +1,4 @@
-FROM alpine:3.11.6
+FROM alpine:3.12.0
 
 MAINTAINER F3D Developers <developers@forward3d.com>
 
